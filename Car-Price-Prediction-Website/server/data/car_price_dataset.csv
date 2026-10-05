@@ -1,0 +1,11 @@
+Brand,Year,Age,Horsepower,Engine_Size_L,Mileage,Fuel_Type,Transmission,Owners,Price
+Toyota,2022,4,120,1.5,30000,Petrol,Automatic,1,23500
+Honda,2021,5,118,1.5,42000,Petrol,Manual,1,20500
+Hyundai,2023,3,115,1.5,18000,Petrol,Automatic,1,21500
+Maruti,2020,6,90,1.2,55000,Petrol,Manual,2,10500
+Tata,2022,4,110,1.5,32000,Diesel,Manual,1,15000
+BMW,2021,5,190,2.0,36000,Petrol,Automatic,1,42500
+Audi,2020,6,180,2.0,50000,Petrol,Automatic,2,36000
+Ford,2019,7,150,1.5,65000,Diesel,Manual,2,14000
+Toyota,2018,8,140,1.8,72000,Petrol,Automatic,2,16500
+Honda,2024,2,130,1.5,10000,Petrol,Automatic,1,27500
