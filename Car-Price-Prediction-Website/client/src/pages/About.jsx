@@ -1,32 +1,45 @@
 import React from "react";
 import { Link } from "react-router-dom";
+
 import {
   ArrowRight,
   CarFront,
   CheckCircle2,
   Search,
   TrendingUp,
-  ShieldCheck,
 } from "lucide-react";
 
 export default function About() {
+  const carImage =
+    "https://images.unsplash.com/photo-1503376780353-7e6692767b70";
+
   return (
     <>
       <style>{`
+        * {
+          box-sizing: border-box;
+        }
+
         .about-page {
           background: #f7f8fc;
           color: #172033;
+          min-height: 100vh;
         }
 
         .about-container {
+          width: 100%;
           max-width: 1120px;
-          margin: auto;
+          margin: 0 auto;
           padding: 0 20px;
         }
 
+        /* =========================
+           HERO
+        ========================= */
+
         .about-hero {
-          padding: 70px 0;
-          background: white;
+          padding: 75px 0;
+          background: #ffffff;
           text-align: center;
         }
 
@@ -35,6 +48,7 @@ export default function About() {
           font-size: 11px;
           font-weight: 800;
           letter-spacing: 1.5px;
+          text-transform: uppercase;
         }
 
         .about-hero h1 {
@@ -42,6 +56,7 @@ export default function About() {
           margin: 13px auto;
           font-size: 43px;
           line-height: 1.15;
+          letter-spacing: -1px;
         }
 
         .about-hero h1 span {
@@ -50,14 +65,18 @@ export default function About() {
 
         .about-hero p {
           max-width: 650px;
-          margin: auto;
+          margin: 0 auto;
           color: #788294;
           font-size: 14px;
           line-height: 1.8;
         }
 
+        /* =========================
+           INTRO
+        ========================= */
+
         .about-intro {
-          padding: 70px 0;
+          padding: 75px 0;
         }
 
         .about-intro-grid {
@@ -68,16 +87,40 @@ export default function About() {
         }
 
         .about-image {
+          position: relative;
+          width: 100%;
           height: 390px;
           overflow: hidden;
           border-radius: 17px;
-          background: #ddd;
+          background: #e8e9ee;
+          box-shadow: 0 15px 40px rgba(25, 30, 50, 0.10);
+        }
+
+        .about-image::after {
+          content: "";
+          position: absolute;
+          inset: 0;
+          pointer-events: none;
+          background: linear-gradient(
+            180deg,
+            rgba(0, 0, 0, 0.02),
+            rgba(0, 0, 0, 0.08)
+          );
         }
 
         .about-image img {
           width: 100%;
           height: 100%;
+          display: block;
           object-fit: cover;
+          object-position: center;
+          image-rendering: auto;
+          transform: scale(1.001);
+          transition: transform 0.5s ease;
+        }
+
+        .about-image:hover img {
+          transform: scale(1.035);
         }
 
         .about-content > span {
@@ -91,6 +134,7 @@ export default function About() {
           margin: 12px 0 15px;
           font-size: 32px;
           line-height: 1.25;
+          letter-spacing: -0.5px;
         }
 
         .about-content p {
@@ -115,6 +159,7 @@ export default function About() {
 
         .about-list svg {
           color: #43a56b;
+          flex-shrink: 0;
         }
 
         .about-button {
@@ -124,15 +169,26 @@ export default function About() {
           padding: 12px 17px;
           border-radius: 8px;
           background: #5b50d6;
-          color: white;
+          color: #ffffff;
           text-decoration: none;
           font-size: 12px;
           font-weight: 700;
+          transition: all 0.25s ease;
         }
 
+        .about-button:hover {
+          background: #4940bd;
+          transform: translateY(-2px);
+          box-shadow: 0 8px 20px rgba(91, 80, 214, 0.25);
+        }
+
+        /* =========================
+           PROCESS
+        ========================= */
+
         .about-process {
-          padding: 70px 0;
-          background: white;
+          padding: 75px 0;
+          background: #ffffff;
         }
 
         .about-heading {
@@ -151,6 +207,7 @@ export default function About() {
         .about-heading h2 {
           margin: 10px 0;
           font-size: 31px;
+          line-height: 1.25;
         }
 
         .about-heading p {
@@ -170,6 +227,13 @@ export default function About() {
           border: 1px solid #e4e6ec;
           border-radius: 13px;
           background: #fafbfc;
+          transition: all 0.25s ease;
+        }
+
+        .about-process-card:hover {
+          transform: translateY(-5px);
+          border-color: #d7d3ff;
+          box-shadow: 0 12px 30px rgba(20, 25, 45, 0.07);
         }
 
         .about-process-icon {
@@ -196,8 +260,12 @@ export default function About() {
           line-height: 1.7;
         }
 
+        /* =========================
+           USE CASES
+        ========================= */
+
         .about-use {
-          padding: 70px 0;
+          padding: 75px 0;
         }
 
         .about-use-grid {
@@ -210,7 +278,13 @@ export default function About() {
           padding: 27px;
           border-radius: 13px;
           background: #171b2b;
-          color: white;
+          color: #ffffff;
+          transition: all 0.25s ease;
+        }
+
+        .about-use-card:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 15px 35px rgba(23, 27, 43, 0.18);
         }
 
         .about-use-card svg {
@@ -229,12 +303,16 @@ export default function About() {
           line-height: 1.7;
         }
 
+        /* =========================
+           NOTE
+        ========================= */
+
         .about-note {
           margin-top: 35px;
           padding: 20px;
           border: 1px solid #e3e5ea;
           border-radius: 11px;
-          background: white;
+          background: #ffffff;
         }
 
         .about-note strong {
@@ -250,9 +328,18 @@ export default function About() {
           line-height: 1.7;
         }
 
+        /* =========================
+           TABLET
+        ========================= */
+
         @media (max-width: 850px) {
           .about-intro-grid {
             grid-template-columns: 1fr;
+            gap: 35px;
+          }
+
+          .about-image {
+            height: 380px;
           }
 
           .about-process-grid {
@@ -264,22 +351,85 @@ export default function About() {
           }
         }
 
+        /* =========================
+           MOBILE
+        ========================= */
+
         @media (max-width: 550px) {
+          .about-container {
+            padding: 0 16px;
+          }
+
+          .about-hero {
+            padding: 55px 0;
+          }
+
           .about-hero h1 {
             font-size: 34px;
+          }
+
+          .about-hero p {
+            font-size: 13px;
+          }
+
+          .about-intro {
+            padding: 55px 0;
+          }
+
+          .about-image {
+            height: 280px;
+            border-radius: 14px;
+          }
+
+          .about-content h2 {
+            font-size: 27px;
+          }
+
+          .about-process {
+            padding: 55px 0;
           }
 
           .about-process-grid {
             grid-template-columns: 1fr;
           }
 
+          .about-heading h2 {
+            font-size: 27px;
+          }
+
+          .about-use {
+            padding: 55px 0;
+          }
+
+          .about-use-grid {
+            grid-template-columns: 1fr;
+          }
+        }
+
+        /* =========================
+           SMALL MOBILE
+        ========================= */
+
+        @media (max-width: 380px) {
+          .about-hero h1 {
+            font-size: 30px;
+          }
+
           .about-image {
-            height: 280px;
+            height: 240px;
+          }
+
+          .about-content h2 {
+            font-size: 24px;
           }
         }
       `}</style>
 
       <main className="about-page">
+
+        {/* =========================
+            HERO
+        ========================= */}
 
         <section className="about-hero">
           <div className="about-container">
@@ -301,15 +451,39 @@ export default function About() {
           </div>
         </section>
 
+        {/* =========================
+            INTRO
+        ========================= */}
+
         <section className="about-intro">
           <div className="about-container about-intro-grid">
 
             <div className="about-image">
+
               <img
-                src="https://tse2.mm.bing.net/th/id/OIP.hTLVORUbyVJVbQ9Zc5tLVAHaEo?r=0&pid=Api&h=220&P=0"
-                alt="Car"
-                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                src={`${carImage}?auto=format&fit=crop&w=1600&q=90`}
+                srcSet={`
+                  ${carImage}?auto=format&fit=crop&w=600&q=85 600w,
+                  ${carImage}?auto=format&fit=crop&w=900&q=88 900w,
+                  ${carImage}?auto=format&fit=crop&w=1200&q=90 1200w,
+                  ${carImage}?auto=format&fit=crop&w=1600&q=90 1600w,
+                  ${carImage}?auto=format&fit=crop&w=2000&q=92 2000w
+                `}
+                sizes="
+                  (max-width: 550px) 100vw,
+                  (max-width: 850px) 100vw,
+                  50vw
+                "
+                alt="Premium car"
+                loading="lazy"
+                decoding="async"
+                fetchPriority="low"
+                onError={(e) => {
+                  e.currentTarget.src =
+                    "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1600&q=90";
+                }}
               />
+
             </div>
 
             <div className="about-content">
@@ -318,6 +492,7 @@ export default function About() {
 
               <h2>
                 Make better decisions
+                <br />
                 about your vehicle.
               </h2>
 
@@ -357,10 +532,15 @@ export default function About() {
           </div>
         </section>
 
+        {/* =========================
+            HOW IT WORKS
+        ========================= */}
+
         <section className="about-process">
           <div className="about-container">
 
             <div className="about-heading">
+
               <span>HOW AUTOPREDICT WORKS</span>
 
               <h2>
@@ -371,11 +551,13 @@ export default function About() {
                 The process is designed to be simple so you can get
                 an estimated value without complicated calculations.
               </p>
+
             </div>
 
             <div className="about-process-grid">
 
               <div className="about-process-card">
+
                 <div className="about-process-icon">
                   <Search size={20} />
                 </div>
@@ -386,9 +568,11 @@ export default function About() {
                   Provide basic information about your car such as
                   model, year and fuel type.
                 </p>
+
               </div>
 
               <div className="about-process-card">
+
                 <div className="about-process-icon">
                   <CarFront size={20} />
                 </div>
@@ -399,9 +583,11 @@ export default function About() {
                   Your vehicle information is considered to estimate
                   its current market value.
                 </p>
+
               </div>
 
               <div className="about-process-card">
+
                 <div className="about-process-icon">
                   <TrendingUp size={20} />
                 </div>
@@ -412,9 +598,11 @@ export default function About() {
                   AutoPredict calculates an estimated price based on
                   the available vehicle data.
                 </p>
+
               </div>
 
               <div className="about-process-card">
+
                 <div className="about-process-icon">
                   <CheckCircle2 size={20} />
                 </div>
@@ -425,6 +613,7 @@ export default function About() {
                   Get your estimated car value and use it as a
                   reference for your decision.
                 </p>
+
               </div>
 
             </div>
@@ -432,20 +621,27 @@ export default function About() {
           </div>
         </section>
 
+        {/* =========================
+            WHO CAN USE IT
+        ========================= */}
+
         <section className="about-use">
           <div className="about-container">
 
             <div className="about-heading">
+
               <span>WHO CAN USE IT</span>
 
               <h2>
                 Useful for different car decisions.
               </h2>
+
             </div>
 
             <div className="about-use-grid">
 
               <div className="about-use-card">
+
                 <CarFront size={25} />
 
                 <h3>Selling Your Car</h3>
@@ -454,9 +650,11 @@ export default function About() {
                   Get an estimated value to help you understand your
                   car's market position before selling.
                 </p>
+
               </div>
 
               <div className="about-use-card">
+
                 <Search size={25} />
 
                 <h3>Buying a Used Car</h3>
@@ -465,9 +663,11 @@ export default function About() {
                   Use an estimated price as one reference while
                   evaluating a used vehicle.
                 </p>
+
               </div>
 
               <div className="about-use-card">
+
                 <TrendingUp size={25} />
 
                 <h3>Checking Market Value</h3>
@@ -476,11 +676,13 @@ export default function About() {
                   Quickly check an estimated value when you simply
                   want to understand your vehicle's worth.
                 </p>
+
               </div>
 
             </div>
 
             <div className="about-note">
+
               <strong>Important to know</strong>
 
               <p>
@@ -489,6 +691,7 @@ export default function About() {
                 vary depending on condition, location, service history,
                 ownership, demand and other market factors.
               </p>
+
             </div>
 
           </div>
